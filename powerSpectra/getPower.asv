@@ -41,6 +41,8 @@ data = {dataO, dataR, dataT, dataFluorCorr};
 dataLegend = ["HbO", "HbR", "HbT", "FluorCorr"];
 
  %% across mask
+ 
+
 
  for ind=1:4
     tic;
@@ -65,8 +67,6 @@ dataLegend = ["HbO", "HbR", "HbT", "FluorCorr"];
     if contains(dataLegend(ind), 'Fluor')
         yyaxis right
         loglog(freq, meanSpectra);
-        ylim([-inf 1.1*max(meanSpectra)]);
-        set(gca, 'YScale', 'log');
     else
         yyaxis left
         loglog(freq, meanSpectra);
@@ -75,7 +75,7 @@ dataLegend = ["HbO", "HbR", "HbT", "FluorCorr"];
 
     for ind2=1:length(fRange)
         figure(ind2+1);
-        sgtitle([num2str(fRange(ind2,1)) ' - ' num2str(fRange(ind2,2)) 'Hz Power Map']);
+        sgtitle([num2str(fRange(ind2,1)) '-' num2str(fRange(ind2,2))]);
         subplot(2,2,ind);
         freqRange = [fRange(ind2,1) fRange(ind2,2)];
         bandFreq = freq >= freqRange(1) & freq <= freqRange(2);
@@ -91,11 +91,10 @@ dataLegend = ["HbO", "HbR", "HbT", "FluorCorr"];
         titleObj = title(dataLegend(ind),'FontSize',13);
         set(titleObj,'Visible','on');
         if contains(dataLegend(ind), 'Fluor')
-            ylabelObj = ylabel(cb,'log10 ((\DeltaF/F)^2)','FontSize',13);
+            yylabel(cb,'log10 ((\DeltaF/F)^2)','FontSize',13)
         else
-            ylabelObj = ylabel(cb,'log10 (M^2)','FontSize',13);
+            ylabel(cb,'log10 (M^2)','FontSize',13)
         end
-        set(ylabelObj,'Visible','on');
     end
 end
 
