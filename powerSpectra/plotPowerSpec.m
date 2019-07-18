@@ -1,9 +1,9 @@
-function powerSpectra = plotPowerSpec(freq, runMeanSpectra, dataLegend, currentTrialName)
+function powerSpectra = plotPowerSpec(freq, runMeanSpectra, speciesList, currentTrialName)
 
 powerSpectra = figure;
 
-for ind=1:length(dataLegend)
-    if contains(dataLegend(ind), 'Fluor')
+for ind=1:length(speciesList)
+    if contains(speciesList(ind), 'Fluor')
         yyaxis right;
         loglog(freq{ind}, runMeanSpectra{ind});
         ylim([-inf 1.1*max(runMeanSpectra{ind})]);
@@ -17,7 +17,7 @@ end
 
 xlim([10^-2 10]);
 xlabel('Frequency (Hz)','FontSize',13);
-legend(dataLegend,'FontSize',13);
+legend(speciesList,'FontSize',13);
 pbaspect([1 1 1]); % make the plot square
 title([currentTrialName ', Power Density Spectrum'],'FontSize',13); %also add name of mouse here
 yyaxis left;

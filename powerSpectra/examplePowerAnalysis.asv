@@ -1,13 +1,7 @@
 function examplePowerAnalysis(excelFile, rows)
 % This function will generate power analysis plots for user specified data.
-% A pwelch test is used to generate the power spectra.
-%
-% Inputs:
-%   excelFile: character array containing the location of the excel file to
-%   be read
-%   rows: the specific rows in the excel file that should be processed
-%   fRange: bands over which to compute the power maps (specified by the
-%   user via a input menu)
+% A pwelch test is used to generate the power spectra and the plots are
+% made across frequency 
 
 %% acquire user inputs
 
