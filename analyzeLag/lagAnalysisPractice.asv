@@ -104,10 +104,4 @@ set(titleObj,'Visible','on');
 % 2x3 figures lagTime and lagAmp per mouse (3 trials)
 % or 2x4 where fourth is avg
 % time window needs to be wide enough
-% big sharp transitions that are grabbing most of the features (don't
-% include those)
-% pick 5 mice, 3 trial per mice, full band, ISA, delta
-% pick pixel for gcamp and oxy on top of each other (before lag analysis)
-% ask asher about which mice are better 
-% make sure cross correlation looks good
-% should be seeing lags around 1 second
+% big sharp transitions that are grabbing most of the features

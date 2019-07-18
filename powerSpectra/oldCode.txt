@@ -1,31 +1,7 @@
-%{
-function getPower(excelFile, rows, varargin)
+%-----------------------------------------------------------------------------------------------------------
 
-%acquire freq range if specified, if not, use ISA
-if numel(varargin) > 0
-    fRange = varargin{1};
-else
-    fRange = [0.009 0.08];
-end
-
-%store freq range as string for naming output file
-fStr = [num2str(fRange(1)) '-' num2str(fRange(2))];
-fStr(strfind(fStr,'.')) = 'p';
-
-%parse the runs listed in excel file
-runsInfo = parseTiffRuns(excelFile,rows);
-if isempty(runsInfo)
-    runsInfo = parseDatRuns(excelFile,rows);
-end
-%}
-fs = 20;
-fRange = [0.009 0.08; 0.08 0.4];
-
-%read in raw data
 loadData = load('C:\Users\Nischal\Documents\MATLAB_Test\TestProcessed\190530\190530-R3M2368-fc1-dataHb.mat');
 loadDataFluor = load('C:\Users\Nischal\Documents\MATLAB_Test\TestProcessed\190530\190530-R3M2368-fc1-dataFluor.mat');
-paramPath = what('bauerParams');
-stdMask = load(fullfile(paramPath.path,'noVasculatureMask.mat'));
 
 %store HB and Fluor data along with brain mask
 dataHb = loadData.xform_datahb;
@@ -41,8 +17,6 @@ data = {dataO, dataR, dataT, dataFluorCorr};
 dataLegend = ["HbO", "HbR", "HbT", "FluorCorr"];
 
  %% across mask
- 
-
 
  for ind=1:4
     tic;
@@ -67,6 +41,8 @@ dataLegend = ["HbO", "HbR", "HbT", "FluorCorr"];
     if contains(dataLegend(ind), 'Fluor')
         yyaxis right
         loglog(freq, meanSpectra);
+        ylim([-inf 1.1*max(meanSpectra)]);
+        set(gca, 'YScale', 'log');
     else
         yyaxis left
         loglog(freq, meanSpectra);
@@ -75,7 +51,7 @@ dataLegend = ["HbO", "HbR", "HbT", "FluorCorr"];
 
     for ind2=1:length(fRange)
         figure(ind2+1);
-        sgtitle([num2str(fRange(ind2,1)) '-' num2str(fRange(ind2,2))]);
+        sgtitle([num2str(fRange(ind2,1)) ' - ' num2str(fRange(ind2,2)) 'Hz Power Map']);
         subplot(2,2,ind);
         freqRange = [fRange(ind2,1) fRange(ind2,2)];
         bandFreq = freq >= freqRange(1) & freq <= freqRange(2);
@@ -91,10 +67,11 @@ dataLegend = ["HbO", "HbR", "HbT", "FluorCorr"];
         titleObj = title(dataLegend(ind),'FontSize',13);
         set(titleObj,'Visible','on');
         if contains(dataLegend(ind), 'Fluor')
-            yylabel(cb,'log10 ((\DeltaF/F)^2)','FontSize',13)
+            ylabelObj = ylabel(cb,'log10 ((\DeltaF/F)^2)','FontSize',13);
         else
-            ylabel(cb,'log10 (M^2)','FontSize',13)
+            ylabelObj = ylabel(cb,'log10 (M^2)','FontSize',13);
         end
+        set(ylabelObj,'Visible','on');
     end
 end
 
@@ -108,12 +85,3 @@ yyaxis left
 ylabel('HB (M^2/Hz)','FontSize',13)
 yyaxis right
 ylabel('Fluor ((\DeltaF/F)^2/Hz)','FontSize',13)
-%% questions
-%freq span of data?
-%how to account for ds data?
-
-%% across frequencies
-
-
-
-%collapse figures on a dimension that is meaningful
