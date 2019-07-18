@@ -32,7 +32,8 @@ end
 
 % store freq range as string for naming output file
 fStr = {};
-for ind=1:length(fRange)
+[elements, ~] = size(fRange);
+for ind=1:elements
     currRange = [num2str(fRange(ind,1)) '-' num2str(fRange(ind,2))];
     currRange(strfind(currRange,'.')) = 'p';
     fStr = [fStr; currRange];
