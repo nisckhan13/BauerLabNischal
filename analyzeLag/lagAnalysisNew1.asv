@@ -1,10 +1,10 @@
 %% load data
 disp('load');
 tic;
-maskData = load('C:\Users\Nischal\Documents\TestData\181116\181116-2-week0-LandmarksandMask.mat');
-asherData1 = load('C:\Users\Nischal\Documents\TestData\181116\181116-2-week0-dataGCaMP-fc1.mat');
-asherData2 = load('C:\Users\Nischal\Documents\TestData\181116\181116-2-week0-dataGCaMP-fc2.mat');
-asherData3 = load('C:\Users\Nischal\Documents\TestData\181116\181116-2-week0-dataGCaMP-fc3.mat');
+maskData = load('C:\Users\Nischal\Documents\TestData\181116\181116-1-week0-LandmarksandMask.mat');
+asherData1 = load('C:\Users\Nischal\Documents\TestData\181116\181116-1-week0-dataGCaMP-fc1.mat');
+asherData2 = load('C:\Users\Nischal\Documents\TestData\181116\181116-1-week0-dataGCaMP-fc2.mat');
+asherData3 = load('C:\Users\Nischal\Documents\TestData\181116\181116-1-week0-dataGCaMP-fc3.mat');
 toc;
 
 %% after loading
@@ -26,7 +26,7 @@ lagAmpTrialAll = [];
 lagfig = figure(1);
 set(lagfig,'Position',[100 100 1800 800]);
 for ind=1:3
-    dotLagFile = ['D:\ProcessedData\AsherLag\TestLagSave\TestLagFile-181116-2-week0-fc' num2str(ind) '.mat'];
+    dotLagFile = ['D:\ProcessedData\AsherLag\TestLagSave\TestLagFile-181116-1-week0-fc' num2str(ind) '.mat'];
     if exist(dotLagFile, 'file')
         disp('loading saved data');
         load(dotLagFile);
@@ -108,7 +108,9 @@ axis(gca,'square');
 colorbar; colormap('jet');
 set(titleObj,'Visible','on');
 
-sgtitle('181116-2-week0');
+sgtitle('181116-1-week0');
 
-saveLagFig = 'D:\ProcessedData\AsherLag\TestLagSave\TestLagFig-181116-2-week0-dotLag';
+saveLagFig = 'D:\ProcessedData\AsherLag\TestLagSave\TestLagFig-181116-1-week0-dotLag';
 saveas(lagfig, [saveLagFig '.png']);
+
+%% plot 

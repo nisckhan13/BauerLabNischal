@@ -27,14 +27,13 @@ m7fc3 = load('D:\ProcessedData\AsherLag\TestLagSave\TestLagFile-181116-7-week0-f
 
 mFCData = [m1fc1 m1fc2 m1fc3 m2fc1 m2fc2 m2fc3 m4fc1 m4fc2 m4fc3 m6fc1 m6fc2 m6fc3 m7fc1 m7fc2 m7fc3];
 
+
 %% process and plot data
 lagAmpTrialAll = [];
 lagTimeTrialAll = [];
 
-tLim = [0 2];
-rLim = [0 1.5];
-
-%maskTrial = maskData1.xform_mask * maskData2.xform_mask * maskData4.xform_mask * maskData6.xform_mask * maskData7.xform_mask;
+tLim = [0 3];
+rLim = [0 2];
 
 paramPath = what('bauerParams');
 stdMask = load(fullfile(paramPath.path,'noVasculatureMask.mat'));
@@ -45,48 +44,36 @@ for ind = 1:15
     lagTimeTrialAll = cat(3,lagTimeTrialAll,mFCData(ind).lagTimeTrial);
 end
 
-
 disp('plot avg');
 lagfig = figure(1);
 set(lagfig,'Position',[100 100 650 900]);
 subplot(2,1,1);
-imagesc(nanmean(lagTimeTrialAll,3),tLim);
+imagesc(nanmean(lagTimeTrialAll,3),'AlphaData',meanMask,tLim);
 set(gca,'Visible','off');
 titleObj = title('lagTimeAvg');
 axis(gca,'square');
 colorbar; colormap('jet');
 set(titleObj,'Visible','on');
-
 hold on;
-rectangle('Position',[22,82,8,8],...
-  'EdgeColor', 'r',...
-  'LineWidth', 2,...
-  'LineStyle','-');
-rectangle('Position',[35,26,8,8],...
-  'EdgeColor', 'r',...
-  'LineWidth', 2,...
-  'LineStyle','-');
+lineX(1:41) = 30;
+lineY = 42:82;
+plot(lineX,lineY, 'Color','black','LineStyle','-','LineWidth',2);
 
 figure(1);
 subplot(2,1,2);
-imagesc(nanmean(lagAmpTrialAll,3),rLim);
+imagesc(nanmean(lagAmpTrialAll,3),'AlphaData',meanMask,rLim);
 set(gca,'Visible','off');
 titleObj = title('lagAmpAvg');
 axis(gca,'square');
 colorbar; colormap('jet');
 set(titleObj,'Visible','on');
-
 hold on;
-rectangle('Position',[22,82,8,8],...
-  'EdgeColor', 'r',...
-  'LineWidth', 2,...
-  'LineStyle','-');
-rectangle('Position',[35,26,8,8],...
-  'EdgeColor', 'r',...
-  'LineWidth', 2,...
-  'LineStyle','-');
+lineX(1:41) = 30;
+lineY = 42:82;
+plot(lineX,lineY, 'Color','black','LineStyle','-','LineWidth',2);
 
 sgtitle('Average across 5 mice with 3 runs each');
 
-saveLagFig = 'D:\ProcessedData\AsherLag\TestLagSave\TestLagFig-181116-avg5Mice-dotLag';
+% change name as neede
+saveLagFig = 'D:\ProcessedData\AsherLag\TestLagSave\TestLagFig-181116-avg5Mice-dotLagMaskLine';
 saveas(lagfig, [saveLagFig '.png']);
