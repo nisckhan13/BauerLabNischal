@@ -1,32 +1,58 @@
+%% input parameters
+clear;
+
+ds = '578'; % which mice dataset
+dateDS = '180918'; % which date
+
 %% load data
-disp('load');
+disp(['----- LOADING ' dateDS '-' ds '-week0 -----']);
 tic;
-maskData = load('C:\Users\Nischal\Documents\TestData\181116\181116-1-week0-LandmarksandMask.mat');
-asherData1 = load('C:\Users\Nischal\Documents\TestData\181116\181116-1-week0-dataGCaMP-fc1.mat');
-asherData2 = load('C:\Users\Nischal\Documents\TestData\181116\181116-1-week0-dataGCaMP-fc2.mat');
-asherData3 = load('C:\Users\Nischal\Documents\TestData\181116\181116-1-week0-dataGCaMP-fc3.mat');
+
+maskData = load(['E:\Data_for_Kenny\Aged_Animals\Aged_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-LandmarksandMask.mat']);
+asherData1 = load(['E:\Data_for_Kenny\Aged_Animals\Aged_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-fc1.mat']);
+asherData2 = load(['E:\Data_for_Kenny\Aged_Animals\Aged_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-fc2.mat']);
+asherData3 = load(['E:\Data_for_Kenny\Aged_Animals\Aged_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-fc3.mat']);
+
+data4Loc = ['E:\Data_for_Kenny\Aged_Animals\Aged_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-fc4.mat'];
+
+if exist(data4Loc, 'file')
+    disp('run 4 found');
+    asherData4 = load(data4Loc);
+    asherData = [asherData1 asherData2 asherData3 asherData4];
+    subVar = 5;
+else
+    disp('run 4 NOT found');
+    asherData = [asherData1 asherData2 asherData3];
+    subVar = 4;
+end
+
+
 toc;
 
 %% after loading
-disp('----- processing -----');
+disp('--- processing ---');
 parameters.lowpass = 2;
 parameters.highpass = 0.04;
 parameters.startTime = 30;
 
-edgeLen = 3;
-tZone = 4;
+edgeLen = 4;
+tZone = 5;
 corrThr = 0.3;
-tLim = [0 3];
-rLim = [0 2];
+tLim = [0 4];
+rLim = [-1 1];
 
-% load data
-asherData = [asherData1 asherData2 asherData3];
+paramPath = what('bauerParams');
+stdMask = load(fullfile(paramPath.path,'noVasculatureMask.mat'));
+meanMask = stdMask.leftMask | stdMask.rightMask;
+
 lagTimeTrialAll = [];
 lagAmpTrialAll = [];
 lagfig = figure(1);
 set(lagfig,'Position',[100 100 1800 800]);
-for ind=1:3
-    dotLagFile = ['D:\ProcessedData\AsherLag\TestLagSave\TestLagFile-181116-1-week0-fc' num2str(ind) '.mat'];
+
+tic;
+for ind=1:length(asherData)
+    dotLagFile = ['D:\ProcessedData\AsherLag\finalDotLagSave\aged\dotLag-' dateDS '-' ds '-week0-fc' num2str(ind) '.mat'];
     if exist(dotLagFile, 'file')
         disp('loading saved data');
         load(dotLagFile);
@@ -38,7 +64,7 @@ for ind=1:3
         fs = 16.8;
         
         % filter data
-        disp(['filter ' num2str(ind)]);
+        disp(['filter run ' num2str(ind)]);
         if ~isempty(parameters.highpass)
             xform_datadeoxy = mouse.freq.highpass(xform_datadeoxy,parameters.highpass,fs);
             xform_dataoxy = mouse.freq.highpass(xform_dataoxy,parameters.highpass,fs);
@@ -51,7 +77,7 @@ for ind=1:3
         end
 
         % compute lag
-        disp(['compute lag ' num2str(ind)]);
+        disp(['compute and save lag run ' num2str(ind)]);
         data1 = squeeze(xform_datadeoxy+xform_dataoxy);
         data2 = squeeze(xform_datafluorCorr);
         
@@ -69,19 +95,19 @@ for ind=1:3
         save(dotLagFile,'lagTimeTrial','lagAmpTrial','tZone','corrThr','edgeLen','covResult');
     end
     
-    disp(['plot ' num2str(ind)]);
-    subplot(2,4,ind);
-    imagesc(lagTimeTrial,tLim);
+    disp(['plot run ' num2str(ind)]);
+    subplot(2,subVar,ind);
+    imagesc(lagTimeTrial,'AlphaData',meanMask,tLim);
     set(gca,'Visible','off');
     titleObj = title(['lagTime fc' num2str(ind)]);
     axis(gca,'square');
     colorbar; colormap('jet');
     set(titleObj,'Visible','on');
     
-    subplot(2,4,ind+4);
-    imagesc(lagAmpTrial,rLim);
+    subplot(2,subVar,ind+subVar);
+    imagesc(lagAmpTrial,'AlphaData',meanMask,rLim);
     set(gca,'Visible','off');
-    titleObj = title(['lagAmp fc' num2str(ind)]);
+    titleObj = title(['lagCorr fc' num2str(ind)]);
     axis(gca,'square');
     colorbar; colormap('jet');
     set(titleObj,'Visible','on');
@@ -89,28 +115,31 @@ for ind=1:3
     lagTimeTrialAll = cat(3,lagTimeTrialAll,lagTimeTrial);
     lagAmpTrialAll = cat(3,lagAmpTrialAll,lagAmpTrial);
 end
+
 %plot
-disp('plot avg');
+disp('plot avg and save');
 figure(1);
-subplot(2,4,4);
-imagesc(nanmean(lagTimeTrialAll,3),tLim);
+subplot(2,subVar,subVar);
+imagesc(nanmean(lagTimeTrialAll,3),'AlphaData',meanMask,tLim);
 set(gca,'Visible','off');
 titleObj = title('lagTimeAvg');
 axis(gca,'square');
 colorbar; colormap('jet');
 set(titleObj,'Visible','on');
+
+
 figure(1);
-subplot(2,4,8);
-imagesc(nanmean(lagAmpTrialAll,3),rLim);
+subplot(2,subVar,subVar*2);
+imagesc(nanmean(lagAmpTrialAll,3),'AlphaData',meanMask,rLim);
 set(gca,'Visible','off');
-titleObj = title('lagAmpAvg');
+titleObj = title('lagCorrAvg');
 axis(gca,'square');
 colorbar; colormap('jet');
 set(titleObj,'Visible','on');
 
-sgtitle('181116-1-week0');
+sgtitle([dateDS '-' num2str(ds) '-week0']);
 
-saveLagFig = 'D:\ProcessedData\AsherLag\TestLagSave\TestLagFig-181116-1-week0-dotLag';
+saveLagFig = ['D:\ProcessedData\AsherLag\finalDotLagSave\aged\dotLagFig-' dateDS '-' num2str(ds) '-week0'];
 saveas(lagfig, [saveLagFig '.png']);
-
-%% plot 
+disp('DONE');
+toc;
