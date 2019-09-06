@@ -4,9 +4,10 @@
 
 disp('loading all aged data');
 tic;
-allAgedMice = ["180917-422" "180917-424" "180917-425" "180917-426" "180917-427" "180917-450"...
-    "180917-452" "180917-459" "180917-461" "180918-307" "180918-309" "180918-421"...
-    "180918-442" "180918-443" "180918-446" "180918-447" "180918-578"];
+allAgedMice = ["180918-442" "180918-443" "180918-446" "180918-447" "180918-578"];
+% allAgedMice = ["180917-422" "180917-424" "180917-425" "180917-426" "180917-427" "180917-450"...
+%     "180917-452" "180917-459" "180917-461" "180918-307" "180918-309" "180918-421"...
+%     "180918-442" "180918-443" "180918-446" "180918-447" "180918-578"];
 % allAgedMice = ["180917-422" "180917-424" "180917-425" "180917-426" "180917-427" "180917-450"...
 %     "180917-452" "180917-459" "180917-461" "180918-309"...
 %     "180918-442" "180918-446" "180918-447"];
@@ -95,7 +96,7 @@ hold on;
 plot(maxLag, maxCorr, 'r.', 'MarkerSize', 20);
 xlabel('LagTime (s)');
 ylabel('Correlation');
-title(['lagCorr All Aged || lag: ' sprintf('%.2f',maxLag) ...
+title(['lagCorr 5 mice Aged || lag: ' sprintf('%.2f',maxLag) ...
     's corr: ' sprintf('%.2f',maxCorr)]);
 ylim([0 1]);
 xlim([-rangeTime rangeTime]);
@@ -115,11 +116,11 @@ ylim([-5e-4 6e-4]);
 set(gca,'YColor',left_color)
 hold on;
 yyaxis right
-plot(avgBlockTimeFluorAll+maxLag,avgTtraceFluorAll, 'color', right_color);
+plot(avgBlockTimeFluorAll,avgTtraceFluorAll, 'color', right_color);
 ylabel('GCaMP \Delta F/F');
 ylim([-5e-3 6e-3]);
 legend('hbt', 'fluor');
-xlim([maxLag 20]);
+% xlim([maxLag 20]);
 set(gca,'YColor',right_color);
 
 %% plot activation peak
