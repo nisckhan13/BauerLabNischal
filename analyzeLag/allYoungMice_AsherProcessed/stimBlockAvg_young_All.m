@@ -4,9 +4,11 @@
 
 disp('loading all young data');
 tic;
-allYoungMice = ["181116-1" "181116-2" "181116-4" "181116-6" "181116-7" "181116-8"...
-    "181116-9" "181116-10" "181115-2046" "181115-2047" "181115-2048" "181115-2049"...
-    "181115-2052" "181115-2053" "181115-2054" "181115-2055"];
+% only 5 mice
+allYoungMice = ["181116-1" "181116-2" "181116-4" "181116-6" "181116-7" "181116-8"];
+% allYoungMice = ["181116-1" "181116-2" "181116-4" "181116-6" "181116-7" "181116-8"...
+%     "181116-9" "181116-10" "181115-2046" "181115-2047" "181115-2048" "181115-2049"...
+%     "181115-2052" "181115-2053" "181115-2054" "181115-2055"];
 % allYoungMice = ["181116-1" "181116-2" "181116-4" "181116-6" "181116-7" "181116-8"...
 %     "181116-9" "181116-10" "181115-2046" "181115-2047" "181115-2048" "181115-2049"...
 %     "181115-2053" "181115-2055"];
@@ -74,6 +76,10 @@ avgBlockTimeFluorAll = nanmean(blockTimeHbAll,3);
 avgTtraceHbAll = nanmean(ttraceHbAll,3);
 avgTtraceFluorAll = nanmean(ttraceFluorAll,3);
 avgPeakHbMapAll = nanmean(peakHbMapAll,3);
+
+% change units
+avgTtraceHbAll = avgTtraceHbAll/1000;
+
 [corr, lagTime] = xcorr(avgTtraceHbAll,avgTtraceFluorAll,rangeTime*fs, 'normalized');
 lagTime = lagTime/fs;
 [maxCorr, maxInd] = max(corr);
@@ -84,7 +90,9 @@ paramPath = what('bauerParams');
 stdMask = load(fullfile(paramPath.path,'noVasculatureMask.mat'));
 meanMask = stdMask.leftMask | stdMask.rightMask;
 
-% plot lag
+disp('done data');
+
+%% plot lag
 lagCorrFig = figure(1);
 set(lagCorrFig,'Position',[100 100 500 400]);
 plot(lagTime, corr);
@@ -93,12 +101,12 @@ hold on;
 plot(maxLag, maxCorr, 'r.', 'MarkerSize', 20);
 xlabel('LagTime (s)');
 ylabel('Correlation');
-title(['lagCorr All Young || lag: ' sprintf('%.2f',maxLag) ...
+title(['lagCorr 5 mice Young || lag: ' sprintf('%.2f',maxLag) ...
     's corr: ' sprintf('%.2f',maxCorr)]);
 ylim([0 1]);
 xlim([-rangeTime rangeTime]);
 
-% plot timetrace
+%% plot timetrace
 timeTraceFig = figure(2);
 set(timeTraceFig,'Position',[100 100 750 400]);
 left_color = [0 0.6 0]; % green
@@ -106,7 +114,7 @@ right_color = [0 0 1]; % blue
 yyaxis left;
 plot(avgBlockTimeHbAll,avgTtraceHbAll, 'color', left_color);
 set(gca,'FontSize',11);
-title('All Young, avgTimeTrace');
+title('5 Young, avgTimeTrace');
 xlabel('Time (s)');
 ylabel('\Delta Hb');
 ylim([-5e-4 6e-4]);
@@ -117,9 +125,10 @@ plot(avgBlockTimeFluorAll,avgTtraceFluorAll, 'color', right_color);
 ylabel('GCaMP \Delta F/F');
 ylim([-5e-3 6e-3]);
 legend('hbt', 'fluor');
+% xlim([maxLag 20]);
 set(gca,'YColor',right_color);
 
-% plot activation peak
+%% plot activation peak
 actPeakFig = figure(3);
 imagesc(avgPeakHbMapAll,'AlphaData', meanMask);
 caxis(peakMapLim);
@@ -129,6 +138,7 @@ axis(gca,'square');
 titleObj = title('activation region young mice avg, HbT');
 set(titleObj,'Visible','on');
 
+%% save
 saveLagFig = 'D:\ProcessedData\AsherLag\stimResponse\stimLagData\stimResponseDat\avgFigures\youngLag';
 saveas(lagCorrFig, [saveLagFig '.png']);
 close(lagCorrFig);

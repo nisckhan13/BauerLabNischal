@@ -84,7 +84,9 @@ paramPath = what('bauerParams');
 stdMask = load(fullfile(paramPath.path,'noVasculatureMask.mat'));
 meanMask = stdMask.leftMask | stdMask.rightMask;
 
-% plot lag
+disp('done data');
+
+%% plot lag
 lagCorrFig = figure(1);
 set(lagCorrFig,'Position',[100 100 500 400]);
 plot(lagTime, corr);
@@ -98,7 +100,7 @@ title(['lagCorr All Aged || lag: ' sprintf('%.2f',maxLag) ...
 ylim([0 1]);
 xlim([-rangeTime rangeTime]);
 
-% plot timetrace
+%% plot timetrace
 timeTraceFig = figure(2);
 set(timeTraceFig,'Position',[100 100 750 400]);
 left_color = [0 0.6 0]; % green
@@ -113,13 +115,14 @@ ylim([-5e-4 6e-4]);
 set(gca,'YColor',left_color)
 hold on;
 yyaxis right
-plot(avgBlockTimeFluorAll,avgTtraceFluorAll, 'color', right_color);
+plot(avgBlockTimeFluorAll+maxLag,avgTtraceFluorAll, 'color', right_color);
 ylabel('GCaMP \Delta F/F');
 ylim([-5e-3 6e-3]);
 legend('hbt', 'fluor');
+xlim([maxLag 20]);
 set(gca,'YColor',right_color);
 
-% plot activation peak
+%% plot activation peak
 actPeakFig = figure(3);
 imagesc(avgPeakHbMapAll,'AlphaData', meanMask);
 caxis(peakMapLim);
@@ -129,6 +132,7 @@ axis(gca,'square');
 titleObj = title('activation region aged mice avg, HbT');
 set(titleObj,'Visible','on');
 
+%% save
 saveLagFig = 'D:\ProcessedData\AsherLag\stimResponse\stimLagData\stimResponseDat\avgFigures\agedLag';
 saveas(lagCorrFig, [saveLagFig '.png']);
 close(lagCorrFig);
