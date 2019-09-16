@@ -54,12 +54,17 @@ for ind=1:length(bauerDataF)
     tic;
     disp(['--- Stim Run ' num2str(ind) ' ---']);
     dataHb = squeeze(sum(bauerDataH(ind).xform_datahb,3));
+    dataHbTemp = bauerDataH(ind).xform_datahb;
+    dataHbO = squeeze(dataHbTemp(:,:,1,:));
+    dataHbR = squeeze(dataHbTemp(:,:,2,:));
     dataFluor = squeeze(bauerDataF(ind).xform_datafluorCorr);
 
     % gsr
     if (useGSR)
         disp('GSR...');
         dataHb = mouse.process.gsr(dataHb, trialMask);
+        dataHbO = mouse.process.gsr(dataHbO, trialMask);
+        dataHbR = mouse.process.gsr(dataHbR, trialMask);
         dataFluor = mouse.process.gsr(dataFluor, trialMask);
     end
 
@@ -71,6 +76,12 @@ for ind=1:length(bauerDataF)
     [blockDataFluor, blockTimeFluor] = mouse.expSpecific.blockAvg(dataFluor,time,blockLenTime,...
         fs*blockLenTime);
     blockDataFluor = bsxfun(@minus,blockDataFluor,nanmean(blockDataFluor(:,:,baselineInd),3)); 
+    
+    [blockDataHbO, blockTimeHbO] = mouse.expSpecific.blockAvg(dataHbO,time,blockLenTime,fs*blockLenTime);
+    blockDataHbO = bsxfun(@minus,blockDataHbO,nanmean(blockDataHbO(:,:,baselineInd),3));
+    
+    [blockDataHbR, blockTimeHbR] = mouse.expSpecific.blockAvg(dataHbR,time,blockLenTime,fs*blockLenTime);
+    blockDataHbR = bsxfun(@minus,blockDataHbR,nanmean(blockDataHbR(:,:,baselineInd),3));
 
     % generate peak map  
     disp('Generating peak map...');
@@ -96,7 +107,7 @@ for ind=1:length(bauerDataF)
 
     % display peak hb map to base ROI off of
     saveMaskLoc = ['D:\ProcessedData\AsherLag\stimResponse\stimLagDataBauer\stimResponseDat\ttraceMasks\'...
-        dateDS '-' ds '-week0-stim' num2str(ind) '-ttraceMask.mat'];
+        dateDS '-' ds '-week0-stim' num2str(ind) '-ttraceMask_GSR.mat'];
     if exist(saveMaskLoc, 'file')
         disp('Found saved ttraceMask');
         ttraceMask = load(saveMaskLoc);
@@ -153,6 +164,14 @@ for ind=1:length(bauerDataF)
     blockDataHbMask = blockDataHb.*ttraceMask;
     blockDataHbMask(blockDataHbMask==0) = NaN;
     ttraceHb = squeeze(nanmean(blockDataHbMask,[1 2]));
+    
+    blockDataHbOMask = blockDataHbO.*ttraceMask;
+    blockDataHbOMask(blockDataHbOMask==0) = NaN;
+    ttraceHbO = squeeze(nanmean(blockDataHbOMask,[1 2]));
+    
+    blockDataHbRMask = blockDataHbR.*ttraceMask;
+    blockDataHbRMask(blockDataHbRMask==0) = NaN;
+    ttraceHbR = squeeze(nanmean(blockDataHbRMask,[1 2]));
 
     rangeTime = 10;
     [corr, lagTime] = xcorr(ttraceHb, ttraceFluor, rangeTime*fs, 'normalized');
@@ -177,9 +196,9 @@ for ind=1:length(bauerDataF)
 
     % save data
     saveDatLoc = ['D:\ProcessedData\AsherLag\stimResponse\stimLagDataBauer\stimResponseDat\'...
-        dateDS '-' ds '-week0-stim' num2str(ind) '-stimLagDat.mat'];
+        dateDS '-' ds '-week0-stim' num2str(ind) '-stimLagDat_GSR.mat'];
     save(saveDatLoc, 'ttraceFluor', 'ttraceHb', 'blockTimeHb', 'blockTimeFluor', 'ttraceMask',...
-        'corr', 'lagTime', 'maxCorr', 'maxLag');
+        'corr', 'lagTime', 'maxCorr', 'maxLag', 'ttraceHbO', 'ttraceHbR', 'blockTimeHbO', 'blockTimeHbR');
 
     stimfig = figure(4);
     sgtitle([dateDS '-' ds '-week0-TimeTrace']);
@@ -207,19 +226,19 @@ end
 
 disp('Saving final figures...');
 saveRegFig = ['D:\ProcessedData\AsherLag\stimResponse\stimLagDataBauer\stimResponseDat\'...
-        dateDS '-' ds '-week0-actvRegImg'];
+        dateDS '-' ds '-week0-actvRegImg_GSR'];
 saveas(actvReg, [saveRegFig '.png']);
 
 close(actvReg);
 
 saveLagFig = ['D:\ProcessedData\AsherLag\stimResponse\stimLagDataBauer\stimResponseDat\'...
-        dateDS '-' ds '-week0-stim-LagFig'];
+        dateDS '-' ds '-week0-stim-LagFig_GSR'];
 saveas(lagfigStim, [saveLagFig '.png']);
 
 close(lagfigStim);
 
 saveStimFig = ['D:\ProcessedData\AsherLag\stimResponse\stimLagDataBauer\stimResponseDat\'...
-    dateDS '-' ds '-week0-stim-timeTrace'];
+    dateDS '-' ds '-week0-stim-timeTrace_GSR'];
 saveas(stimfig, [saveStimFig '.png']);
 
 close(stimfig);

@@ -2,9 +2,10 @@
 % load asher data
 disp('loading Asher aged data');
 tic;
-allAgedMice = ["180917-422" "180917-424" "180917-425" "180917-426" "180917-427" "180917-450"...
-    "180917-452" "180917-459" "180917-461" "180918-307" "180918-309" "180918-421"...
-    "180918-442" "180918-443" "180918-446" "180918-447" "180918-578"];
+allAgedMice = ["180918-442" "180918-443" "180918-446" "180918-447" "180918-578"];
+% allAgedMice = ["180917-422" "180917-424" "180917-425" "180917-426" "180917-427" "180917-450"...
+%     "180917-452" "180917-459" "180917-461" "180918-307" "180918-309" "180918-421"...
+%     "180918-442" "180918-443" "180918-446" "180918-447" "180918-578"];
 allStimLagData = [];
 allPeakHbData = [];
 
@@ -143,6 +144,11 @@ avgBlockTimeFluorAllB = nanmean(blockTimeHbAllB,3);
 avgTtraceHbAllB = nanmean(ttraceHbAllB,3);
 avgTtraceFluorAllB = nanmean(ttraceFluorAllB,3);
 avgPeakHbMapAllB = nanmean(peakHbMapAllB,3);
+
+% scale factor
+avgTtraceHbAllB = 0.4008 * avgTtraceHbAllB;
+avgTtraceFluorAllB = 0.7174 * avgTtraceFluorAllB;
+
 [corrB, lagTimeB] = xcorr(avgTtraceHbAllB,avgTtraceFluorAllB,rangeTime*fs, 'normalized');
 lagTimeB = lagTimeB/fs;
 [maxCorrB, maxIndB] = max(corrB);
@@ -156,8 +162,8 @@ disp('done 3');
 % plot timetrace
 timeTraceFig = figure(1);
 set(timeTraceFig,'Position',[100 100 800 425]);
-first_color = [0 0.8 0]; % green, hb
-second_color = [0 0.4 0]; % other green, hb  
+first_color = [1 0 0]; % asher
+second_color = [0 0.6 0]; % bauer
 plot(avgBlockTimeHbAll,avgTtraceHbAll/1000, 'color', first_color);
 set(gca,'FontSize',12);
 title('Aged, avgTimeTrace, Hb');
@@ -178,8 +184,8 @@ legend('Asher', 'Bauer');
 % plot timetrace
 timeTraceFigFluor = figure(2);
 set(timeTraceFigFluor,'Position',[100 100 800 425]);
-first_color = [0 0 1]; % blue, fluor
-second_color = [0 0.5 0.5]; % other blue, fluor  
+first_color = [1 0 0]; % asher
+second_color = [0 0.6 0]; % bauer  
 plot(avgBlockTimeFluorAll,avgTtraceFluorAll, 'color', first_color);
 set(gca,'FontSize',12);
 title('Aged, avgTimeTrace, Fluor');

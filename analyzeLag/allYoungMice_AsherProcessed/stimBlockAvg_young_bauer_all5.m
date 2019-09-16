@@ -14,7 +14,7 @@ allPeakHbData = [];
 for ind = 1:length(allYoungMice)
     for run = 1:4
         currRunLoc = ['D:\ProcessedData\AsherLag\stimResponse\stimLagDataBauer\stimResponseDat\'...
-            char(allYoungMice(ind)) '-week0-stim' num2str(run) '-stimLagDat.mat'];        
+            char(allYoungMice(ind)) '-week0-stim' num2str(run) '-stimLagDat_GSR.mat'];        
         if exist(currRunLoc, 'file')
             disp([char(allYoungMice(ind)) '-week0-fc' num2str(run) ' stimdat']);
             currRun = load(currRunLoc);
@@ -44,6 +44,8 @@ lagTimeAll = [];
 blockTimeHbAll = [];
 blockTimeFluorAll = [];
 ttraceHbAll = [];
+ttraceHbOAll = [];
+ttraceHbRAll = [];
 ttraceFluorAll = [];
 peakHbMapAll = [];
 avgTTraceMask = 1;
@@ -56,6 +58,8 @@ for ind = 1:length(allStimLagData)
     blockTimeHbAll = cat(3,blockTimeHbAll,allStimLagData(ind).blockTimeHb);
     blockTimeFluorAll = cat(3,blockTimeFluorAll,allStimLagData(ind).blockTimeFluor);
     ttraceHbAll = cat(3,ttraceHbAll,allStimLagData(ind).ttraceHb);
+    ttraceHbOAll = cat(3,ttraceHbOAll,allStimLagData(ind).ttraceHbO);
+    ttraceHbRAll = cat(3,ttraceHbRAll,allStimLagData(ind).ttraceHbR);
     ttraceFluorAll = cat(3,ttraceFluorAll,allStimLagData(ind).ttraceFluor);
     avgTTraceMask = avgTTraceMask.*allStimLagData(ind).ttraceMask;
     corrAll = cat(3,corrAll,allStimLagData(ind).corr);
@@ -70,24 +74,21 @@ disp('done 2');
 avgBlockTimeHbAll = nanmean(blockTimeHbAll,3);
 avgBlockTimeFluorAll = nanmean(blockTimeHbAll,3);
 avgTtraceHbAll = nanmean(ttraceHbAll,3);
+avgTtraceHbOAll = nanmean(ttraceHbOAll,3);
+avgTtraceHbRAll = nanmean(ttraceHbRAll,3);
 avgTtraceFluorAll = nanmean(ttraceFluorAll,3);
-avgPeakHbMapAll = nanmean(peakHbMapAll,3);
-
-% scale factor
-avgTtraceHbAll = 0.41 * avgTtraceHbAll;
-avgTtraceFluorAll = 0.76 * avgTtraceFluorAll;
-
-[corr, lagTime] = xcorr(avgTtraceHbAll,avgTtraceFluorAll,rangeTime*fs, 'normalized');
-lagTime = lagTime/fs;
-[maxCorr, maxInd] = max(corr);
-maxLag = (lagTime(maxInd));
-peakMapLim = [-1e-6 1.2e-6];
+% avgPeakHbMapAll = nanmean(peakHbMapAll,3);
+% [corr, lagTime] = xcorr(avgTtraceHbAll,avgTtraceFluorAll,rangeTime*fs, 'normalized');
+% lagTime = lagTime/fs;
+% [maxCorr, maxInd] = max(corr);
+% maxLag = (lagTime(maxInd));
+% peakMapLim = [-5e-4 5e-4];
 
 paramPath = what('bauerParams');
 stdMask = load(fullfile(paramPath.path,'noVasculatureMask.mat'));
 meanMask = stdMask.leftMask | stdMask.rightMask;
 
-disp('done calc');
+disp('done data');
 
 %% plot lag
 lagCorrFig = figure(1);
@@ -110,18 +111,20 @@ left_color = [0 0.6 0]; % green
 right_color = [0 0 1]; % blue  
 yyaxis left;
 plot(avgBlockTimeHbAll,avgTtraceHbAll, 'color', left_color);
+hold on;
+plot(avgBlockTimeHbAll,avgTtraceHbOAll, 'color', left_color,'LineWidth',2);
+plot(avgBlockTimeHbAll,avgTtraceHbRAll, 'color', left_color,'LineWidth',2);
 set(gca,'FontSize',11);
 title('All Young, avgTimeTrace');
 xlabel('Time (s)');
 ylabel('\Delta Hb');
 ylim([-1e-6 1.2e-6]);
 set(gca,'YColor',left_color)
-hold on;
 yyaxis right
 plot(avgBlockTimeFluorAll,avgTtraceFluorAll, 'color', right_color);
 ylabel('GCaMP \Delta F/F');
 ylim([-5e-3 6e-3]);
-legend('hbt', 'fluor');
+legend('hbt','hbo','hbr', 'fluor');
 % xlim([maxLag 20]);
 set(gca,'YColor',right_color);
 

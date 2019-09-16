@@ -7,12 +7,12 @@ dateDS = dateDSInput; % which date
 disp(['----- LOADING ' dateDS '-' ds '-week0 -----']);
 tic;
 
-maskData = load(['E:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-LandmarksandMask.mat']);
-asherData1 = load(['E:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-stim1.mat']);
-asherData2 = load(['E:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-stim2.mat']);
-asherData3 = load(['E:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-stim3.mat']);
+maskData = load(['G:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-LandmarksandMask.mat']);
+asherData1 = load(['G:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-stim1.mat']);
+asherData2 = load(['G:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-stim2.mat']);
+asherData3 = load(['G:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-stim3.mat']);
 
-data4Loc = ['E:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-stim4.mat'];
+data4Loc = ['G:\Data_for_Kenny\Young_Animals\Young_Week_0\' dateDS '\Processed' dateDS '\' dateDS '-' ds '-week0-dataGCaMP-stim4.mat'];
 
 if exist(data4Loc, 'file')
     disp('run 4 found');
@@ -47,12 +47,16 @@ for ind=1:length(asherData)
     tic;
     disp(['--- Stim Run ' num2str(ind) ' ---']);
     dataHb = squeeze(asherData(ind).deoxy + asherData(ind).oxy);
+    dataHbO = squeeze(asherData(ind).oxy);
+    dataHbR = squeeze(asherData(ind).deoxy);
     dataFluor = squeeze(asherData(ind).gcamp6corr);
 
     % gsr
     if (useGSR)
         disp('GSR...');
         dataHb = mouse.process.gsr(dataHb, trialMask);
+        dataHbO = mouse.process.gsr(dataHbO, trialMask);
+        dataHbR = mouse.process.gsr(dataHbR, trialMask);
         dataFluor = mouse.process.gsr(dataFluor, trialMask);
     end
 
@@ -64,6 +68,12 @@ for ind=1:length(asherData)
     [blockDataFluor, blockTimeFluor] = mouse.expSpecific.blockAvg(dataFluor,time,blockLenTime,...
         fs*blockLenTime);
     blockDataFluor = bsxfun(@minus,blockDataFluor,nanmean(blockDataFluor(:,:,baselineInd),3)); 
+    
+    [blockDataHbO, blockTimeHbO] = mouse.expSpecific.blockAvg(dataHbO,time,blockLenTime,fs*blockLenTime);
+    blockDataHbO = bsxfun(@minus,blockDataHbO,nanmean(blockDataHbO(:,:,baselineInd),3));
+    
+    [blockDataHbR, blockTimeHbR] = mouse.expSpecific.blockAvg(dataHbR,time,blockLenTime,fs*blockLenTime);
+    blockDataHbR = bsxfun(@minus,blockDataHbR,nanmean(blockDataHbR(:,:,baselineInd),3));
 
     % generate peak map  
     disp('Generating peak map...');
@@ -89,7 +99,7 @@ for ind=1:length(asherData)
 
     % display peak hb map to base ROI off of
     saveMaskLoc = ['D:\ProcessedData\AsherLag\stimResponse\stimLagData\stimResponseDat\ttraceMasks\'...
-        dateDS '-' ds '-week0-stim' num2str(ind) '-ttraceMask.mat'];
+        dateDS '-' ds '-week0-stim' num2str(ind) '-ttraceMask_GSR.mat'];
     if exist(saveMaskLoc, 'file')
         disp('Found saved ttraceMask');
         ttraceMask = load(saveMaskLoc);
@@ -146,6 +156,14 @@ for ind=1:length(asherData)
     blockDataHbMask = blockDataHb.*ttraceMask;
     blockDataHbMask(blockDataHbMask==0) = NaN;
     ttraceHb = squeeze(nanmean(blockDataHbMask,[1 2]));
+    
+    blockDataHbOMask = blockDataHbO.*ttraceMask;
+    blockDataHbOMask(blockDataHbOMask==0) = NaN;
+    ttraceHbO = squeeze(nanmean(blockDataHbOMask,[1 2]));
+    
+    blockDataHbRMask = blockDataHbR.*ttraceMask;
+    blockDataHbRMask(blockDataHbRMask==0) = NaN;
+    ttraceHbR = squeeze(nanmean(blockDataHbRMask,[1 2]));
 
     rangeTime = 10;
     [corr, lagTime] = xcorr(ttraceHb, ttraceFluor, rangeTime*fs, 'normalized');
@@ -170,9 +188,9 @@ for ind=1:length(asherData)
 
     % save data
     saveDatLoc = ['D:\ProcessedData\AsherLag\stimResponse\stimLagData\stimResponseDat\'...
-        dateDS '-' ds '-week0-stim' num2str(ind) '-stimLagDat.mat'];
+        dateDS '-' ds '-week0-stim' num2str(ind) '-stimLagDat_GSR.mat'];
     save(saveDatLoc, 'ttraceFluor', 'ttraceHb', 'blockTimeHb', 'blockTimeFluor', 'ttraceMask',...
-        'corr', 'lagTime', 'maxCorr', 'maxLag');
+        'corr', 'lagTime', 'maxCorr', 'maxLag', 'ttraceHbO', 'ttraceHbR', 'blockTimeHbO', 'blockTimeHbR');
 
     stimfig = figure(4);
     sgtitle([dateDS '-' ds '-week0-TimeTrace']);
@@ -200,19 +218,19 @@ end
 
 disp('Saving final figures...');
 saveRegFig = ['D:\ProcessedData\AsherLag\stimResponse\stimLagData\stimResponseDat\'...
-        dateDS '-' ds '-week0-actvRegImg'];
+        dateDS '-' ds '-week0-actvRegImg_GSR'];
 saveas(actvReg, [saveRegFig '.png']);
 
 close(actvReg);
 
 saveLagFig = ['D:\ProcessedData\AsherLag\stimResponse\stimLagData\stimResponseDat\'...
-        dateDS '-' ds '-week0-stim-LagFig'];
+        dateDS '-' ds '-week0-stim-LagFig_GSR'];
 saveas(lagfigStim, [saveLagFig '.png']);
 
 close(lagfigStim);
 
 saveStimFig = ['D:\ProcessedData\AsherLag\stimResponse\stimLagData\stimResponseDat\'...
-    dateDS '-' ds '-week0-stim-timeTrace'];
+    dateDS '-' ds '-week0-stim-timeTrace_GSR'];
 saveas(stimfig, [saveStimFig '.png']);
 
 close(stimfig);
