@@ -3,6 +3,7 @@
 disp('loading Asher young data');
 tic;
 allYoungMice = ["181116-1" "181116-2" "181116-4" "181116-6" "181116-7" "181116-8"];
+% allYoungMice = ["181116-1" "181116-8"];
 % allYoungMice = ["181116-1" "181116-2" "181116-4" "181116-6" "181116-7" "181116-8"...
 %     "181116-9" "181116-10" "181115-2046" "181115-2047" "181115-2048" "181115-2049"...
 %     "181115-2052" "181115-2053" "181115-2054" "181115-2055"];
@@ -34,6 +35,7 @@ end
 % load bauer data
 disp('loading Bauer young data');
 allYoungMiceB = ["181116-1" "181116-2" "181116-4" "181116-6" "181116-7" "181116-8"];
+% allYoungMiceB = ["181116-1" "181116-8"];
 allStimLagDataB = [];
 allPeakHbDataB = [];
 
@@ -157,14 +159,55 @@ peakMapLimB = [-1e-6 1.2e-6];
 
 disp('done 3');
 
+%% compute data method 2 
+paramPath = what('bauerParams');
+stdMask = load(fullfile(paramPath.path,'noVasculatureMask.mat'));
+meanMask = stdMask.leftMask | stdMask.rightMask;
+
+% asher
+avgBlockTimeHbAll = nanmean(blockTimeHbAll,3);
+avgBlockTimeFluorAll = nanmean(blockTimeHbAll,3);
+avgTtraceHbAll = nanmean(ttraceHbAll,3);
+avgTtraceFluorAll = nanmean(ttraceFluorAll,3);
+avgPeakHbMapAll = nanmean(peakHbMapAll,3);
+
+% scale factor
+avgTtraceHbAll = avgTtraceHbAll/max(avgTtraceHbAll);
+avgTtraceFluorAll = avgTtraceFluorAll/max(avgTtraceFluorAll);
+
+[corr, lagTime] = xcorr(avgTtraceHbAll,avgTtraceFluorAll,rangeTime*fs, 'normalized');
+lagTime = lagTime/fs;
+[maxCorr, maxInd] = max(corr);
+maxLag = (lagTime(maxInd));
+peakMapLim = [-5e-4 5e-4];
+
+% bauer
+avgBlockTimeHbAllB = nanmean(blockTimeHbAllB,3);
+avgBlockTimeFluorAllB = nanmean(blockTimeHbAllB,3);
+avgTtraceHbAllB = nanmean(ttraceHbAllB,3);
+avgTtraceFluorAllB = nanmean(ttraceFluorAllB,3);
+avgPeakHbMapAllB = nanmean(peakHbMapAllB,3);
+
+% scale factor
+avgTtraceHbAllB = avgTtraceHbAllB/max(avgTtraceHbAllB);
+avgTtraceFluorAllB = avgTtraceFluorAllB/max(avgTtraceFluorAllB);
+
+[corrB, lagTimeB] = xcorr(avgTtraceHbAllB,avgTtraceFluorAllB,rangeTime*fs, 'normalized');
+lagTimeB = lagTimeB/fs;
+[maxCorrB, maxIndB] = max(corrB);
+maxLagB = (lagTime(maxIndB));
+peakMapLimB = [-1e-6 1.2e-6];
+
+disp('done 3');
+
 %% plot hb map
 
 % plot timetrace
 timeTraceFig = figure(1);
 set(timeTraceFig,'Position',[100 100 800 425]);
 first_color = [1 0 0]; % asher
-second_color = [0 0.6 0]; % bauer  
-plot(avgBlockTimeHbAll,avgTtraceHbAll/1000, 'color', first_color);
+second_color = [0 0.6 0]; % bauer
+plot(avgBlockTimeHbAll,avgTtraceHbAll, 'color', first_color);
 set(gca,'FontSize',12);
 title('Young, avgTimeTrace, Hb');
 xlabel('Time (s)');
@@ -177,7 +220,8 @@ plot(avgBlockTimeHbAllB,avgTtraceHbAllB, 'color', second_color);
 % ylabel('GCaMP \Delta F/F');
 % ylim([-5e-3 6e-3]);
 legend('Asher', 'Bauer');
-% set(gca,'YColor',second_color);
+set(figure(1),'color','w');
+% set(gca,'YColor',second_color);;
 
 %% plot fluor map
 
@@ -185,7 +229,7 @@ legend('Asher', 'Bauer');
 timeTraceFigFluor = figure(2);
 set(timeTraceFigFluor,'Position',[100 100 800 425]);
 first_color = [1 0 0]; % asher
-second_color = [0 0.6 0]; % bauer   
+second_color = [0 0.6 0]; % bauer  
 plot(avgBlockTimeFluorAll,avgTtraceFluorAll, 'color', first_color);
 set(gca,'FontSize',12);
 title('Young, avgTimeTrace, Fluor');
@@ -199,6 +243,7 @@ plot(avgBlockTimeFluorAllB,avgTtraceFluorAllB, 'color', second_color);
 % ylabel('GCaMP \Delta F/F');
 % ylim([-5e-3 6e-3]);
 legend('Asher', 'Bauer');
+set(figure(2),'color','w');
 % set(gca,'YColor',second_color);
 
 
