@@ -1,0 +1,995 @@
+Warning: Table variable names were modified to make them valid MATLAB identifiers. The
+original names are saved in the VariableDescriptions property. 
+get wl image and mask
+Trial # 1/36
+Trial # 2/36
+Trial # 3/36
+Trial # 4/36
+Trial # 5/36
+Trial # 6/36
+Trial # 7/36
+Trial # 8/36
+Trial # 9/36
+Trial # 10/36
+Trial # 11/36
+Trial # 12/36
+Trial # 13/36
+Trial # 14/36
+Trial # 15/36
+Trial # 16/36
+Trial # 17/36
+Trial # 18/36
+Trial # 19/36
+Trial # 20/36
+Trial # 21/36
+Trial # 22/36
+Trial # 23/36
+Trial # 24/36
+Trial # 25/36
+Trial # 26/36
+Trial # 27/36
+Trial # 28/36
+Trial # 29/36
+Trial # 30/36
+Trial # 31/36
+Trial # 32/36
+Trial # 33/36
+Trial # 34/36
+Trial # 35/36
+Trial # 36/36
+preprocess and process
+Trial # 1/36
+read
+Elapsed time is 16.203522 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004177 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 55.618549 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 20.989525 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.378228 seconds.
+affine transform
+Elapsed time is 3.996880 seconds.
+save processed
+quality control
+Elapsed time is 220.706415 seconds.
+Trial # 2/36
+read
+Elapsed time is 25.534385 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.005027 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 54.019691 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 20.728822 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.536243 seconds.
+affine transform
+Elapsed time is 4.146963 seconds.
+save processed
+quality control
+Elapsed time is 217.174497 seconds.
+Trial # 3/36
+read
+Elapsed time is 31.614679 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004694 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 53.946450 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 20.667736 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.641628 seconds.
+affine transform
+Elapsed time is 4.213843 seconds.
+save processed
+quality control
+Elapsed time is 216.906079 seconds.
+Trial # 4/36
+read
+Elapsed time is 31.281423 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004077 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 55.120329 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 20.800625 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 19.213616 seconds.
+affine transform
+Elapsed time is 4.160195 seconds.
+save processed
+quality control
+Elapsed time is 214.721796 seconds.
+Trial # 5/36
+read
+Elapsed time is 32.350441 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004365 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 56.055516 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 20.844393 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.847767 seconds.
+affine transform
+Elapsed time is 4.180423 seconds.
+save processed
+quality control
+Elapsed time is 219.467585 seconds.
+Trial # 6/36
+read
+Elapsed time is 35.339734 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.005213 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 53.440368 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.068435 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.502434 seconds.
+affine transform
+Elapsed time is 4.169012 seconds.
+save processed
+quality control
+Elapsed time is 218.496223 seconds.
+Trial # 7/36
+read
+Elapsed time is 32.034816 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004790 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 54.922364 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.073642 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.438257 seconds.
+affine transform
+Elapsed time is 4.235243 seconds.
+save processed
+quality control
+Elapsed time is 218.806038 seconds.
+Trial # 8/36
+read
+Elapsed time is 32.731807 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004500 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 54.809658 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 20.848334 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.671528 seconds.
+affine transform
+Elapsed time is 4.200258 seconds.
+save processed
+quality control
+Elapsed time is 219.390769 seconds.
+Trial # 9/36
+read
+Elapsed time is 32.530850 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004798 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 56.092329 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 20.731403 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.543819 seconds.
+affine transform
+Elapsed time is 4.218974 seconds.
+save processed
+quality control
+Elapsed time is 218.965671 seconds.
+Trial # 10/36
+read
+Elapsed time is 33.423797 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004768 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 55.518603 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.204217 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.527551 seconds.
+affine transform
+Elapsed time is 4.193365 seconds.
+save processed
+quality control
+Elapsed time is 219.666792 seconds.
+Trial # 11/36
+read
+Elapsed time is 32.958592 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004448 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 54.852335 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.202087 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.603016 seconds.
+affine transform
+Elapsed time is 4.229007 seconds.
+save processed
+quality control
+Elapsed time is 221.033865 seconds.
+Trial # 12/36
+read
+Elapsed time is 30.805429 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.005395 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 56.429228 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.389989 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.619510 seconds.
+affine transform
+Elapsed time is 4.170936 seconds.
+save processed
+quality control
+Elapsed time is 219.675176 seconds.
+Trial # 13/36
+read
+Elapsed time is 29.973888 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004656 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 56.337860 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.032515 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.406227 seconds.
+affine transform
+Elapsed time is 4.155622 seconds.
+save processed
+quality control
+Elapsed time is 222.109355 seconds.
+Trial # 14/36
+read
+Elapsed time is 33.585663 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.005157 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 54.403737 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.434670 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.465077 seconds.
+affine transform
+Elapsed time is 4.270193 seconds.
+save processed
+quality control
+Elapsed time is 220.691162 seconds.
+Trial # 15/36
+read
+Elapsed time is 33.641878 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004211 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 56.572558 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 22.331236 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 20.547189 seconds.
+affine transform
+Elapsed time is 4.642373 seconds.
+save processed
+quality control
+Elapsed time is 232.191875 seconds.
+Trial # 16/36
+read
+Elapsed time is 33.356419 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004916 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 56.911944 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.972985 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.907478 seconds.
+affine transform
+Elapsed time is 4.212606 seconds.
+save processed
+quality control
+Elapsed time is 240.919070 seconds.
+Trial # 17/36
+read
+Elapsed time is 33.590412 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004461 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 56.550019 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.085531 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.589869 seconds.
+affine transform
+Elapsed time is 4.219648 seconds.
+save processed
+quality control
+Elapsed time is 221.028570 seconds.
+Trial # 18/36
+read
+Elapsed time is 35.322928 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.003791 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 54.677504 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.083477 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.741700 seconds.
+affine transform
+Elapsed time is 4.277217 seconds.
+save processed
+quality control
+Elapsed time is 221.233284 seconds.
+Trial # 19/36
+read
+Elapsed time is 28.837781 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.003798 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 55.123336 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 21.261104 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.642565 seconds.
+affine transform
+Elapsed time is 4.198395 seconds.
+save processed
+quality control
+Elapsed time is 220.031686 seconds.
+Trial # 20/36
+read
+Elapsed time is 36.193899 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004349 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 54.471775 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 20.789249 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.746529 seconds.
+affine transform
+Elapsed time is 4.207656 seconds.
+save processed
+quality control
+
+Warning: Table variable names were modified to make them valid MATLAB identifiers. The
+original names are saved in the VariableDescriptions property. 
+get wl image and mask
+Trial # 1/16
+Trial # 2/16
+Trial # 3/16
+Trial # 4/16
+Trial # 5/16
+Trial # 6/16
+Trial # 7/16
+Trial # 8/16
+Trial # 9/16
+Trial # 10/16
+Trial # 11/16
+Trial # 12/16
+Trial # 13/16
+Trial # 14/16
+Trial # 15/16
+Trial # 16/16
+preprocess and process
+Trial # 1/16
+read
+Elapsed time is 28.312768 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.026537 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 50.093381 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 19.091087 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 18.664765 seconds.
+affine transform
+Elapsed time is 5.148555 seconds.
+save processed
+quality control
+Elapsed time is 222.193475 seconds.
+Trial # 2/16
+read
+Elapsed time is 35.179493 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.007426 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 58.438257 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 25.668186 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 26.723900 seconds.
+affine transform
+Elapsed time is 4.113865 seconds.
+save processed
+quality control
+Elapsed time is 237.385901 seconds.
+Trial # 3/16
+read
+Elapsed time is 27.763191 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.005161 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 61.610713 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 22.978652 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 22.729146 seconds.
+affine transform
+Elapsed time is 4.118047 seconds.
+save processed
+quality control
+Elapsed time is 270.158872 seconds.
+Trial # 4/16
+read
+Elapsed time is 27.362824 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004500 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 62.492322 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 22.169961 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 21.958229 seconds.
+affine transform
+Elapsed time is 3.912233 seconds.
+save processed
+quality control
+Elapsed time is 227.170300 seconds.
+Trial # 5/16
+read
+Elapsed time is 27.567010 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.013947 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 59.500443 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 22.598176 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 22.471563 seconds.
+affine transform
+Elapsed time is 3.892269 seconds.
+save processed
+quality control
+Elapsed time is 228.590624 seconds.
+Trial # 6/16
+read
+Elapsed time is 30.807675 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004423 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 68.636040 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 28.120262 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 25.747594 seconds.
+affine transform
+Elapsed time is 4.488816 seconds.
+save processed
+quality control
+Elapsed time is 253.319619 seconds.
+Trial # 7/16
+read
+Elapsed time is 31.382579 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.003997 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 68.787531 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 26.407999 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 24.119905 seconds.
+affine transform
+Elapsed time is 4.052368 seconds.
+save processed
+quality control
+Elapsed time is 309.026720 seconds.
+Trial # 8/16
+read
+Elapsed time is 34.493822 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.005229 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 72.230756 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 22.769183 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 22.868484 seconds.
+affine transform
+Elapsed time is 3.898521 seconds.
+save processed
+quality control
+Elapsed time is 248.194022 seconds.
+Trial # 9/16
+read
+Elapsed time is 38.960985 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.005457 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 86.065519 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 32.446890 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 27.173463 seconds.
+affine transform
+Elapsed time is 4.830953 seconds.
+save processed
+quality control
+Elapsed time is 275.555243 seconds.
+Trial # 10/16
+read
+Elapsed time is 28.969130 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004242 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 70.392716 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 26.898939 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 24.663440 seconds.
+affine transform
+Elapsed time is 3.995016 seconds.
+save processed
+quality control
+Elapsed time is 248.109955 seconds.
+Trial # 11/16
+read
+Elapsed time is 34.787547 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004783 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 73.789559 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 25.194076 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 25.036515 seconds.
+affine transform
+Elapsed time is 4.262185 seconds.
+save processed
+quality control
+Elapsed time is 276.352532 seconds.
+Trial # 12/16
+read
+Elapsed time is 32.272543 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.005862 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 65.981917 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 26.239904 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 28.811352 seconds.
+affine transform
+Elapsed time is 4.729919 seconds.
+save processed
+quality control
+Elapsed time is 245.426424 seconds.
+Trial # 13/16
+read
+Elapsed time is 31.478614 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004368 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 67.015677 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 23.567020 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 23.918980 seconds.
+affine transform
+Elapsed time is 3.931699 seconds.
+save processed
+quality control
+Elapsed time is 238.708202 seconds.
+Trial # 14/16
+read
+Elapsed time is 29.881463 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004191 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 57.768624 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 22.395222 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 22.498316 seconds.
+affine transform
+Elapsed time is 3.866211 seconds.
+save processed
+quality control
+Elapsed time is 231.805954 seconds.
+Trial # 15/16
+read
+Elapsed time is 30.323973 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004607 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 57.730254 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 22.206189 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 22.811048 seconds.
+affine transform
+Elapsed time is 4.023954 seconds.
+save processed
+quality control
+Elapsed time is 236.580660 seconds.
+Trial # 16/16
+read
+Elapsed time is 32.996238 seconds.
+rawQC analysis...
+checking for dropped frames...
+Elapsed time is 0.004167 seconds.
+No dropped frames detected.
+process hb
+DP(1): 0.044653
+DP(2): 0.12468
+DP(3): 0.38058
+Elapsed time is 61.238739 seconds.
+process fluor
+DP(1): 0.046024
+DP(1): 0.051649
+Elapsed time is 23.464240 seconds.
+downsample
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+during resampling process filtering was not done since the output frequency is more than half of input frequency.
+Elapsed time is 22.976899 seconds.
+affine transform
+Elapsed time is 3.838545 seconds.
+save processed
+quality control

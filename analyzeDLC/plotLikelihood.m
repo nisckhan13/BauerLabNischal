@@ -1,19 +1,32 @@
-%% load data
-excelDataLocAnes = 'E:\DLC-Working\Thy1-db-Bauer-2019-09-17\processed-data\generation-1\A14_M3_Front_0001_anesDeepCut_resnet50_Thy1-dbSep17shuffle1_300000.csv';
-excelDataLocAwake = 'E:\DLC-Working\Thy1-db-Bauer-2019-09-17\processed-data\generation-1\A14_M3_Front_0001_awakeDeepCut_resnet50_Thy1-dbSep17shuffle1_300000.csv';
+%% load data gen-0
+excelDataLocAnes = 'E:\DLC-Working\Thy1_Front-Bauer-2019-09-29\processed-data\generation-0\A14_M3_Front_0001_anesDeepCut_resnet50_Thy1_FrontSep29shuffle1_300000.csv';
+excelDataLocAwake = 'E:\DLC-Working\Thy1_Front-Bauer-2019-09-29\processed-data\generation-0\A14_M3_Front_0001_awakeDeepCut_resnet50_Thy1_FrontSep29shuffle1_300000.csv';
 
-dataAnes = xlsread(excelDataLocAnes, 'A14_M3_Front_0001_anesDeepCut_r');
-dataAwake = xlsread(excelDataLocAwake, 'A14_M3_Front_0001_awakeDeepCut_');
+dataAnes = xlsread(excelDataLocAnes);
+dataAwake = xlsread(excelDataLocAwake);
 
 totalFramesAnes = length(dataAnes(:,1));
 totalFramesAwake = length(dataAwake(:,1));
 
 disp('done 1');
 
+%% load data gen-1
+excelDataLocAnes = 'E:\DLC-Working\Thy1_Front-Bauer-2019-09-29\processed-data\generation-1\A14_M3_Front_0001_anesDeepCut_resnet50_Thy1_FrontSep29shuffle1_300000.csv';
+excelDataLocAwake = 'E:\DLC-Working\Thy1_Front-Bauer-2019-09-29\processed-data\generation-1\A14_M3_Front_0001_awakeDeepCut_resnet50_Thy1_FrontSep29shuffle1_300000.csv';
+
+dataAnes = xlsread(excelDataLocAnes);
+dataAwake = xlsread(excelDataLocAwake);
+
+totalFramesAnes = length(dataAnes(:,1));
+totalFramesAwake = length(dataAwake(:,1));
+
+disp('done 2');
+
+
 %% choose Anes Awake
 
 mouse = 1; %0=anes, 1=awake
-threshold = 0.5;
+threshold = 0.95;
 
 if mouse == 1
     disp('awake');
@@ -30,8 +43,8 @@ disp('done choice');
 %% compute left
 currCol = 4;
 currDig = 1;
-countFramesL = zeros(5,1);
-while currCol <= 16
+countFramesL = zeros(7,1);
+while currCol <= 22
     for ind=1:totalFrames
         if data(ind,currCol) < threshold
             countFramesL(currDig,1) = countFramesL(currDig,1)+1;
@@ -100,7 +113,7 @@ ylim([0 1.2]);
 xlim([0 totalFrames]);
 ax = gca;
 ax.XRuler.Exponent = 0;
-legend({'Threshold', 'LWrist', 'LDig1Med', 'LDig2', 'LDig3', 'LDig4Lat'},'Position',[0.9077 0.5 0.09 0.15]);
+legend({'Threshold', 'Wrist', 'Dig1Med', 'Dig2', 'Dig3', 'Dig4Lat'},'Position',[0.9077 0.5 0.09 0.15]);
 xlabel('Frame');
 ylabel('Network Confidence Likelihood');
 set(LFig,'color','w');
@@ -151,3 +164,33 @@ set(RFig,'color','w');
 set(gca, 'FontSize', 16);
 
 disp('done 3');
+
+%% plot per gen
+figure('Position', [100 100 1500 400], 'color','w');
+gens = [0 1];
+digits = {'elbow', 'hand', 'wrist', 'dig1Med', 'dig2', 'dig3', 'dig4Lat'};
+for i=1:length(gen0anes)
+    subplot(1, length(gen0anes),i);
+    vals = [gen0anes(i) gen1anes(i)];
+    plot(gens,vals,'-o');
+    xlabel('Generation');
+    ylabel('Frames Below Thresh');
+    title([digits{i} ' 95% Thresh']);
+    xlim([-1 2]);
+    ylim([0 150]);
+end
+
+%% plot per gen
+figure('Position', [100 100 1500 400], 'color','w');
+gens = [0 1];
+digits = {'elbow', 'hand', 'wrist', 'dig1Med', 'dig2', 'dig3', 'dig4Lat'};
+for i=1:length(gen0anes)
+    subplot(1, length(gen0anes),i);
+    vals = [gen0awake(i) gen1awake(i)];
+    plot(gens,vals,'-o');
+    xlabel('Generation');
+    ylabel('Frames Below Thresh');
+    title([digits{i} ' 95% Thresh']);
+    xlim([-1 2]);
+    ylim([400 5800]);
+end
